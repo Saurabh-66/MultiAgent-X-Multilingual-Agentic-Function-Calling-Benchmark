@@ -1,0 +1,113 @@
+{
+  "total_records": 10551,
+  "splits": {
+    "train": 7393,
+    "dev": 1545,
+    "test": 1613
+  },
+  "languages": {
+    "am": {
+      "count": 919,
+      "name": "Amharic",
+      "script": "Ethiopic",
+      "resource_level": "very_low"
+    },
+    "ha": {
+      "count": 968,
+      "name": "Hausa",
+      "script": "Latin",
+      "resource_level": "low"
+    },
+    "hi": {
+      "count": 984,
+      "name": "Hindi",
+      "script": "Devanagari",
+      "resource_level": "medium"
+    },
+    "ig": {
+      "count": 974,
+      "name": "Igbo",
+      "script": "Latin",
+      "resource_level": "low"
+    },
+    "km": {
+      "count": 984,
+      "name": "Khmer",
+      "script": "Khmer",
+      "resource_level": "very_low"
+    },
+    "lo": {
+      "count": 454,
+      "name": "Lao",
+      "script": "Lao",
+      "resource_level": "very_low"
+    },
+    "om": {
+      "count": 380,
+      "name": "Oromo",
+      "script": "Latin",
+      "resource_level": "very_low"
+    },
+    "pa": {
+      "count": 984,
+      "name": "Punjabi",
+      "script": "Gurmukhi",
+      "resource_level": "low"
+    },
+    "si": {
+      "count": 978,
+      "name": "Sinhala",
+      "script": "Sinhala",
+      "resource_level": "low"
+    },
+    "sw": {
+      "count": 980,
+      "name": "Swahili",
+      "script": "Latin",
+      "resource_level": "medium"
+    },
+    "ti": {
+      "count": 975,
+      "name": "Tigrinya",
+      "script": "Ethiopic",
+      "resource_level": "very_low"
+    },
+    "yo": {
+      "count": 971,
+      "name": "Yoruba",
+      "script": "Latin",
+      "resource_level": "low"
+    }
+  },
+  "domains": {
+    "healthcare": 2388,
+    "agriculture": 2347,
+    "mobile_finance": 2040,
+    "government": 1789,
+    "emergency": 1987
+  },
+  "example_types": {
+    "positive_easy": 3276,
+    "positive_medium": 1958,
+    "positive_hard": 1075,
+    "multi_turn_q": 1074,
+    "multi_turn_a": 1076,
+    "negative": 1047,
+    "parallel": 530,
+    "ambiguous": 515
+  },
+  "scripts": {
+    "Ethiopic": 1894,
+    "Latin": 4273,
+    "Devanagari": 984,
+    "Khmer": 984,
+    "Lao": 454,
+    "Gurmukhi": 984,
+    "Sinhala": 978
+  },
+  "resource_levels": {
+    "very_low": 3712,
+    "low": 4875,
+    "medium": 1964
+  }
+}

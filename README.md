@@ -80,7 +80,7 @@ The cause is data. No open multilingual function-calling training dataset existe
 
 | Domain | Records | Functions |
 |--------|---------|-----------|
-| Healthcare | 2,388 | book_clinic_appointment, check_medication_availability, request_ambulance, get_vaccination_schedule, report_disease_outbreak |
+| Healthcare | 2,388 | `book_clinic_appointment`, `check_medication_availability`, request_ambulance, get_vaccination_schedule, report_disease_outbreak |
 | Agriculture | 2,347 | get_crop_disease_diagnosis, get_market_price, request_extension_worker, get_weather_planting_advice, register_cooperative_sale |
 | Mobile Finance | 2,040 | send_mobile_money, check_balance, pay_bill, request_mobile_loan, get_exchange_rate |
 | Emergency Response | 1,987 | report_emergency, request_evacuation, locate_nearest_shelter, request_food_distribution |
@@ -235,44 +235,44 @@ print(f"AST Accuracy: {accuracy:.2f}%")
 ### Pipeline Overview
 
 ```
-English Seeds (984 records)
-         |
-         v
-+---------------------------+
-|     Qwen3-32B-AWQ         |
+  English Seeds (984 records)
+              |
+              v
++----------------------------+
+|      Qwen3-32B-AWQ         |
 |  Cultural Seed Generation  |
-|  5 domains x 8 types      |
-+---------------------------+
-         |
-         v
-+---------------------------+
-|  Per-Language Adaptation  |
-|  12 languages             |
-|  Cultural blueprints      |
-|  Adaptation not translation|
-+---------------------------+
-         |
-         v
-+---------------------------+
-|    Quality Filtering      |
-|  Schema validation        |
-|  Script verification      |
-|  100% pass rate           |
-+---------------------------+
-         |
-         v
-+---------------------------+
-|    MultiAgent-X Dataset   |
-|  10,551 records           |
-|  Train / Dev / Test       |
-+---------------------------+
+|    5 domains x 8 types     |
++----------------------------+
+              |
+              v
++----------------------------+
+|  Per-Language Adaptation   |
+|       12 languages         |
+|     Cultural blueprints    |
+| Adaptation not translation |
++----------------------------+
+              |
+              v
++----------------------------+
+|      Quality Filtering     |
+|      Schema validation     |
+|     Script verification    |
+|        100% pass rate      |
++----------------------------+
+              |
+              v
++----------------------------+
+|    MultiAgent-X Dataset    |
+|       10,551 records       |
+|     Train / Dev / Test     |
++----------------------------+
 ```
 
-### Step 1 -- Seed Generation
+### Step 1: Seed Generation
 
 984 English seeds generated using Qwen3-32B-AWQ covering all 5 domains and 8 example types, grounded in Sub-Saharan African and South Asian cultural contexts from the start.
 
-### Step 2 -- Cultural Adaptation via Adaptive Data by Adaption
+### Step 2: Cultural Adaptation via Adaptive Data by Adaption
 
 Each seed culturally adapted into 12 target languages with explicit per-language blueprints specifying:
 - Regional services (M-Pesa vs Telebirr vs bKash vs OPay vs UPI)
@@ -282,7 +282,7 @@ Each seed culturally adapted into 12 target languages with explicit per-language
 
 Adaptation, not translation. This is the principle Adaptive Data by Adaption is built around.
 
-### Step 3 -- Quality Filtering
+### Step 3: Quality Filtering
 
 Rule-based validation on every record:
 - JSON schema compliance
@@ -290,7 +290,7 @@ Rule-based validation on every record:
 - Required argument presence
 - Native script verification for non-Latin writing systems
 
-### Step 4 -- Dataset Assembly
+### Step 4: Dataset Assembly
 
 Hash-based deterministic 70/15/15 train/dev/test split for full reproducibility.
 
@@ -303,9 +303,9 @@ Hash-based deterministic 70/15/15 train/dev/test split for full reproducibility.
 | `train.jsonl` | 7,393 | Training split |
 | `dev.jsonl` | 1,545 | Validation split |
 | `test.jsonl` | 1,613 | Test split with ground truth |
-| `stats.json` | -- | Full dataset statistics |
-| `schemas/functions.json` | -- | Complete 24-function schema |
-| `figures/` | -- | Visualizations and charts |
+| `stats.json` | - | Full dataset statistics |
+| `schemas/functions.json` | - | Complete 24-function schema |
+| `images/` | - | Visualizations and charts |
 
 ---
 
@@ -337,7 +337,7 @@ Hash-based deterministic 70/15/15 train/dev/test split for full reproducibility.
 @dataset{multiagentx2026,
   title     = {MultiAgent-X: Multilingual Agentic Function-Calling Benchmark
                for Under-Resourced Languages},
-  author    = {Mallik, Rishabh},
+  author    = {Mallik, Saurabh},
   year      = {2026},
   publisher = {HuggingFace},
   url       = {https://huggingface.co/datasets/Saurabh-66/MultiAgent-X},
@@ -350,6 +350,7 @@ Hash-based deterministic 70/15/15 train/dev/test split for full reproducibility.
 
 ## Links
 
+- Kaggle Writeup: https://www.kaggle.com/competitions/the-uncharted-data-challenge/writeups/multiagent-x
 - HuggingFace Dataset: https://huggingface.co/datasets/Saurabh-66/MultiAgent-X
 - Kaggle Dataset: https://www.kaggle.com/datasets/saurabhmallik/multiagent-x-multilingual-agentic-function-call
 - Kaggle Competition: https://www.kaggle.com/competitions/the-uncharted-data-challenge

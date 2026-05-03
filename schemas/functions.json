@@ -1,0 +1,306 @@
+{
+  "book_clinic_appointment": {
+    "description": "Book an appointment at a government or community health facility",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "facility_type": {"type": "string", "enum": ["government_hospital","health_centre","community_clinic","mobile_unit"]},
+        "district": {"type": "string", "description": "Name of district or local area"},
+        "condition_category": {"type": "string", "enum": ["maternal","child","general","emergency","mental_health","infectious"]},
+        "urgency": {"type": "string", "enum": ["emergency","urgent","routine"]},
+        "preferred_date": {"type": "string", "description": "Relative date: today, tomorrow, this_week, next_week"},
+        "chw_referral": {"type": "boolean", "description": "Whether referred by community health worker"}
+      },
+      "required": ["facility_type", "urgency"]
+    }
+  },
+  "check_medication_availability": {
+    "description": "Check if a medication is available at a nearby facility",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "medication_name": {"type": "string"},
+        "facility_radius_km": {"type": "integer"},
+        "district": {"type": "string"}
+      },
+      "required": ["medication_name"]
+    }
+  },
+  "request_ambulance": {
+    "description": "Request emergency transport from nearest facility",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location_description": {"type": "string"},
+        "patient_count": {"type": "integer"},
+        "emergency_type": {"type": "string", "enum": ["trauma","obstetric","cardiac","respiratory","other"]}
+      },
+      "required": ["location_description", "emergency_type"]
+    }
+  },
+  "get_vaccination_schedule": {
+    "description": "Get vaccination schedule and next due vaccines for a child",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "child_age_months": {"type": "integer"},
+        "vaccines_received": {"type": "array", "items": {"type": "string"}},
+        "location": {"type": "string"}
+      },
+      "required": ["child_age_months"]
+    }
+  },
+  "report_disease_outbreak": {
+    "description": "Report suspected disease outbreak to health authorities",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "disease_type": {"type": "string", "enum": ["cholera","malaria","measles","typhoid","dengue","unknown"]},
+        "affected_count": {"type": "integer"},
+        "village_name": {"type": "string"},
+        "district": {"type": "string"}
+      },
+      "required": ["disease_type", "district"]
+    }
+  },
+  "get_crop_disease_diagnosis": {
+    "description": "Get diagnosis and treatment advice for crop symptoms",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "crop_type": {"type": "string"},
+        "symptoms": {"type": "array", "items": {"type": "string"}},
+        "growth_stage": {"type": "string", "enum": ["seedling","vegetative","flowering","fruiting","harvest"]},
+        "region": {"type": "string"}
+      },
+      "required": ["crop_type", "symptoms"]
+    }
+  },
+  "get_market_price": {
+    "description": "Get current market price for agricultural commodities",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "commodity": {"type": "string"},
+        "market_location": {"type": "string"},
+        "quantity_kg": {"type": "number"}
+      },
+      "required": ["commodity", "market_location"]
+    }
+  },
+  "request_extension_worker": {
+    "description": "Request a visit from an agricultural extension officer",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "issue_type": {"type": "string", "enum": ["pest","disease","soil","irrigation","harvest","storage","livestock"]},
+        "farm_location": {"type": "string"},
+        "preferred_date": {"type": "string"}
+      },
+      "required": ["issue_type", "farm_location"]
+    }
+  },
+  "get_weather_planting_advice": {
+    "description": "Get planting or harvesting advice based on weather forecast",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "crop_type": {"type": "string"},
+        "planned_activity": {"type": "string", "enum": ["planting","fertilizing","spraying","irrigating","harvesting"]},
+        "location": {"type": "string"},
+        "date_range": {"type": "string"}
+      },
+      "required": ["crop_type", "planned_activity", "location"]
+    }
+  },
+  "register_cooperative_sale": {
+    "description": "Register produce for cooperative bulk sale",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "commodity": {"type": "string"},
+        "quantity_kg": {"type": "number"},
+        "quality_grade": {"type": "string", "enum": ["A","B","C"]},
+        "member_id": {"type": "string"}
+      },
+      "required": ["commodity", "quantity_kg"]
+    }
+  },
+  "send_mobile_money": {
+    "description": "Send money via mobile money service",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "recipient_number": {"type": "string"},
+        "amount": {"type": "number"},
+        "currency": {"type": "string"},
+        "note": {"type": "string"},
+        "service_provider": {"type": "string", "enum": ["mpesa","mtn_momo","airtel_money","bkash","gcash","orange_money","telebirr","wave","evc_plus","opay","esewa","khalti"]}
+      },
+      "required": ["recipient_number", "amount"]
+    }
+  },
+  "check_balance": {
+    "description": "Check mobile money wallet balance",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "service_provider": {"type": "string"},
+        "account_type": {"type": "string", "enum": ["wallet","savings","loan"]}
+      },
+      "required": ["service_provider"]
+    }
+  },
+  "pay_bill": {
+    "description": "Pay utility or service bill via mobile money",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "bill_type": {"type": "string", "enum": ["electricity","water","school_fees","hospital","microfinance","rent"]},
+        "account_number": {"type": "string"},
+        "amount": {"type": "number"},
+        "provider": {"type": "string"}
+      },
+      "required": ["bill_type", "amount"]
+    }
+  },
+  "request_mobile_loan": {
+    "description": "Request a small mobile credit or loan",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "amount": {"type": "number"},
+        "purpose": {"type": "string", "enum": ["farming","business","school","medical","emergency","rent"]},
+        "repayment_days": {"type": "integer"}
+      },
+      "required": ["amount", "purpose"]
+    }
+  },
+  "get_exchange_rate": {
+    "description": "Get current exchange rate for remittance",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "from_currency": {"type": "string"},
+        "to_currency": {"type": "string"},
+        "amount": {"type": "number"}
+      },
+      "required": ["from_currency", "to_currency"]
+    }
+  },
+  "register_birth": {
+    "description": "Initiate birth registration process with local government",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "child_name": {"type": "string"},
+        "birth_date": {"type": "string"},
+        "birth_location": {"type": "string"},
+        "father_id": {"type": "string"},
+        "mother_id": {"type": "string"},
+        "attending_facility": {"type": "string"}
+      },
+      "required": ["child_name", "birth_date"]
+    }
+  },
+  "check_document_status": {
+    "description": "Check status of a pending government document application",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "document_type": {"type": "string", "enum": ["national_id","birth_certificate","land_title","passport","marriage_certificate"]},
+        "application_number": {"type": "string"}
+      },
+      "required": ["document_type", "application_number"]
+    }
+  },
+  "report_infrastructure_issue": {
+    "description": "Report a community infrastructure problem to local government",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "issue_type": {"type": "string", "enum": ["road","water_supply","electricity","school","health_facility","bridge"]},
+        "location_description": {"type": "string"},
+        "severity": {"type": "string", "enum": ["urgent","moderate","low"]},
+        "reporter_contact": {"type": "string"}
+      },
+      "required": ["issue_type", "location_description", "severity"]
+    }
+  },
+  "apply_for_social_support": {
+    "description": "Apply for government social support or welfare program",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "program_type": {"type": "string", "enum": ["food_assistance","disability_grant","orphan_support","elderly_pension","conditional_cash_transfer"]},
+        "applicant_id": {"type": "string"},
+        "household_size": {"type": "integer"},
+        "district": {"type": "string"}
+      },
+      "required": ["program_type", "district"]
+    }
+  },
+  "report_emergency": {
+    "description": "Report an emergency situation to response coordinators",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "emergency_type": {"type": "string", "enum": ["flood","fire","drought","conflict","disease_outbreak","earthquake","landslide"]},
+        "location": {"type": "string"},
+        "affected_people": {"type": "integer"},
+        "immediate_needs": {"type": "array", "items": {"type": "string", "enum": ["food","water","shelter","medical","evacuation","rescue"]}}
+      },
+      "required": ["emergency_type", "location", "affected_people"]
+    }
+  },
+  "request_evacuation": {
+    "description": "Request evacuation support for a community",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {"type": "string"},
+        "people_count": {"type": "integer"},
+        "mobility_impaired": {"type": "integer"},
+        "threat_type": {"type": "string"},
+        "urgency": {"type": "string", "enum": ["immediate","within_hours","within_days"]}
+      },
+      "required": ["location", "people_count", "urgency"]
+    }
+  },
+  "locate_nearest_shelter": {
+    "description": "Find the nearest emergency shelter or relief facility",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "current_location": {"type": "string"},
+        "people_count": {"type": "integer"},
+        "special_needs": {"type": "array", "items": {"type": "string"}}
+      },
+      "required": ["current_location", "people_count"]
+    }
+  },
+  "request_food_distribution": {
+    "description": "Request emergency food distribution for a community",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "location": {"type": "string"},
+        "beneficiary_count": {"type": "integer"},
+        "days_without_food": {"type": "integer"},
+        "vulnerable_groups": {"type": "array", "items": {"type": "string", "enum": ["children","pregnant","elderly","disabled","lactating"]}}
+      },
+      "required": ["location", "beneficiary_count"]
+    }
+  },
+  "ask_clarification": {
+    "description": "Ask the user for missing information before making a function call",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "what_to_ask": {"type": "string"},
+        "missing_fields": {"type": "array", "items": {"type": "string"}}
+      },
+      "required": ["what_to_ask"]
+    }
+  }
+}
